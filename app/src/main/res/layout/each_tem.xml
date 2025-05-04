@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="10dp"
+    app:cardBackgroundColor="@color/teal"
+    android:background="@drawable/edittext_border">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/logoIv"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/plantNameTv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Neem"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/logoIv"
+            app:layout_constraintTop_toTopOf="@id/logoIv"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="12dp"
+            android:textColor="@color/dark_teal"/>
+
+        <TextView
+            android:id="@+id/scientificNameTv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Azadirachta indica"
+            android:textStyle="italic"
+            android:textColor="@color/dark_purple"
+            app:layout_constraintStart_toStartOf="@id/plantNameTv"
+            app:layout_constraintTop_toBottomOf="@id/plantNameTv"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="4dp" />
+
+        <TextView
+            android:id="@+id/descriptionTv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Neem is a medicinal plant known for its antibacterial properties."
+            android:maxLines="2"
+            android:ellipsize="end"
+            app:layout_constraintTop_toBottomOf="@id/scientificNameTv"
+            app:layout_constraintStart_toStartOf="@id/plantNameTv"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="4dp" />
+
+        <Button
+            android:id="@+id/readMoreBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Read More"
+            app:layout_constraintTop_toBottomOf="@id/descriptionTv"
+            app:layout_constraintStart_toStartOf="@id/plantNameTv"
+            android:layout_marginTop="6dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
