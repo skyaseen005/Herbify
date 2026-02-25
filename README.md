@@ -16,6 +16,10 @@
 | ![Home](https://github.com/user-attachments/assets/0d054c6a-0e37-4c9f-ba30-80dbbab2e6f6) | ![Explore](https://github.com/user-attachments/assets/fce6e86e-e36f-4b99-b233-40414a52f600) | ![Detail 2](![detail1](https://github.com/user-attachments/assets/a4b6c321-2bb6-422a-9f36-eb395b565662)
 ) | ![Garden](https://github.com/user-attachments/assets/ccbaf549-fe93-4ab0-9567-8fbe4f7c2407) | ![About](https://github.com/user-attachments/assets/60d0c14c-962d-43a4-82e9-ca71629e79f2) |
  
+**Login Screen**: 
+<img width="355" height="786" alt="image" src="https://github.com/user-attachments/assets/bf724364-662a-4198-b72f-d99ab84eafca" />
+**SignUpScreen**:
+<img width="334" height="819" alt="image" src="https://github.com/user-attachments/assets/4068a5af-799a-4540-b8f4-24077c4df3cb" />
 
 
 
