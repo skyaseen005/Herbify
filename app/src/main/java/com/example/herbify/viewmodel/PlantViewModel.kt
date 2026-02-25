@@ -116,18 +116,36 @@ class PlantViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val response = apiService.getPlantDetail(plantId, apiKey)
-                if (response.isSuccessful) {
-                    _plantDetail.value = response.body()
-                } else {
-                    _error.value = "Failed to load details: ${response.code()}"
+                when {
+                    response.isSuccessful -> {
+                        _plantDetail.value = response.body()
+                    }
+                    response.code() == 401 -> {
+                        _error.value = "API key invalid or expired"
+                    }
+                    response.code() == 429 -> {
+                        _error.value = "API rate limit reached. Try again later."
+                    }
+                    response.code() == 403 -> {
+                        _error.value = "This plant requires a premium API plan"
+                    }
+                    else -> {
+                        _error.value = "Failed to load details (${response.code()})"
+                    }
                 }
+            } catch (e: com.google.gson.JsonSyntaxException) {
+                // ✅ catches the IllegalStateException from bad JSON
+                _error.value = "API returned unexpected data. Check your API plan."
+            } catch (e: java.io.IOException) {
+                _error.value = "No internet connection"
             } catch (e: Exception) {
-                _error.value = "Network error: ${e.message}"
+                _error.value = "Error: ${e.localizedMessage}"
             } finally {
                 _isLoading.value = false
             }
         }
     }
+
 
     fun clearError() {
         _error.value = null

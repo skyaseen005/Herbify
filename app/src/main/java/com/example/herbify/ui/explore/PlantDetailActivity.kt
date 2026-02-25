@@ -1,6 +1,5 @@
 package com.example.herbify.ui.explore
 
-import com.example.herbify.R
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -8,6 +7,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.example.herbify.R
 import com.example.herbify.databinding.ActivityPlantDetailBinding
 import com.example.herbify.ui.garden.GardenPlant
 import com.example.herbify.viewmodel.GardenViewModel
@@ -25,15 +25,56 @@ class PlantDetailActivity : AppCompatActivity() {
         binding = ActivityPlantDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        plantId = intent.getIntExtra("plant_id", -1)
-        val plantName = intent.getStringExtra("plant_name") ?: "Plant"
+        plantId          = intent.getIntExtra("plant_id", -1)
+        val plantName    = intent.getStringExtra("plant_name")      ?: "Plant"
+        val plantCycle   = intent.getStringExtra("plant_cycle")     ?: ""
+        val plantWater   = intent.getStringExtra("plant_watering")  ?: ""
+        val plantSun     = intent.getStringExtra("plant_sunlight")  ?: ""
+        val plantSci     = intent.getStringExtra("plant_scientific")?: ""
+        val plantImage   = intent.getStringExtra("plant_image")     ?: ""
+        val plantEdible  = intent.getBooleanExtra("plant_edible", false)
 
         setupToolbar(plantName)
-        observeData()
+
+        // Show basic data immediately while API loads
+        showBasicInfo(plantName, plantSci, plantCycle, plantWater, plantSun, plantImage, plantEdible)
 
         if (plantId != -1) {
             plantViewModel.loadPlantDetail(plantId)
             gardenViewModel.checkIsInGarden(plantId)
+        }
+
+        observeViewModel(plantName, plantSci, plantImage, plantWater, plantCycle, plantSun)
+    }
+
+    private fun showBasicInfo(
+        name: String, scientific: String, cycle: String,
+        watering: String, sunlight: String, imageUrl: String, edible: Boolean
+    ) {
+        binding.collapsingToolbar.title = name.replaceFirstChar { it.uppercase() }
+        binding.tvDetailName.text       = name.replaceFirstChar { it.uppercase() }
+        binding.tvDetailScientific.text = scientific
+
+        binding.tvSciNameCard.text    = scientific.ifBlank { "N/A" }
+        binding.tvFamilyCard.text     = "Loading..."
+        binding.tvWateringCard.text   = watering.replaceFirstChar { it.uppercase() }.ifBlank { "N/A" }
+        binding.tvCycleCard.text      = cycle.replaceFirstChar { it.uppercase() }.ifBlank { "N/A" }
+        binding.tvSunlightCard.text   = sunlight.replace("_", " ").replaceFirstChar { it.uppercase() }.ifBlank { "N/A" }
+        binding.tvHardinessCard.text  = "Loading..."
+
+        binding.badgeCycle.text    = cycle.replaceFirstChar { it.uppercase() }.ifBlank { "N/A" }
+        binding.badgeWatering.text = "💧 ${watering.replaceFirstChar { it.uppercase() }.ifBlank { "N/A" }}"
+        binding.badgeEdibleDetail.visibility = if (edible) View.VISIBLE else View.GONE
+
+        binding.tvDescription.text = "Loading plant details..."
+
+        if (imageUrl.isNotBlank()) {
+            Glide.with(this)
+                .load(imageUrl)
+                .transition(DrawableTransitionOptions.withCrossFade())
+                .placeholder(R.drawable.placeholder_plant)
+                .error(R.drawable.placeholder_plant)
+                .into(binding.ivDetailImage)
         }
     }
 
@@ -48,79 +89,102 @@ class PlantDetailActivity : AppCompatActivity() {
         return true
     }
 
-    private fun observeData() {
+    private fun observeViewModel(
+        fallbackName: String, fallbackSci: String, fallbackImage: String,
+        fallbackWater: String, fallbackCycle: String, fallbackSun: String
+    ) {
         plantViewModel.isLoading.observe(this) { loading ->
             binding.detailProgress.visibility = if (loading) View.VISIBLE else View.GONE
         }
 
         plantViewModel.plantDetail.observe(this) { detail ->
-            detail ?: return@observe
+            if (detail == null) return@observe
 
-            // Title
-            binding.collapsingToolbar.title = detail.commonName?.replaceFirstChar { it.uppercase() } ?: "Plant"
-            binding.tvDetailName.text = detail.commonName?.replaceFirstChar { it.uppercase() } ?: "Unknown"
-            binding.tvDetailScientific.text = detail.scientificName?.firstOrNull() ?: ""
+            // ── Names ──────────────────────────────────────────────
+            val displayName = detail.commonName?.replaceFirstChar { it.uppercase() } ?: fallbackName
+            binding.collapsingToolbar.title  = displayName
+            binding.tvDetailName.text        = displayName
+            binding.tvDetailScientific.text  = detail.scientificName?.firstOrNull() ?: fallbackSci
 
-            // Info cards
-            binding.tvSciNameCard.text = detail.scientificName?.firstOrNull() ?: getString(R.string.na)
-            binding.tvFamilyCard.text = detail.family ?: getString(R.string.na)
-            binding.tvWateringCard.text = detail.watering?.replaceFirstChar { it.uppercase() } ?: getString(R.string.na)
-            binding.tvCycleCard.text = detail.cycle?.replaceFirstChar { it.uppercase() } ?: getString(R.string.na)
-            binding.tvSunlightCard.text = detail.sunlight?.firstOrNull()?.replace("_", " ")
-                ?.replaceFirstChar { it.uppercase() } ?: getString(R.string.na)
-            binding.tvHardinessCard.text = if (detail.hardiness != null)
-                "Zone ${detail.hardiness.min} - ${detail.hardiness.max}"
-            else getString(R.string.na)
+            // ── Info cards — mapped directly from JSON ─────────────
+            binding.tvSciNameCard.text   = detail.scientificName?.firstOrNull() ?: "N/A"
+            binding.tvFamilyCard.text    = detail.family ?: "N/A"
 
-            // Badges
-            binding.badgeCycle.text = detail.cycle?.replaceFirstChar { it.uppercase() } ?: "—"
-            binding.badgeWatering.text = "💧 ${detail.watering?.replaceFirstChar { it.uppercase() } ?: "—"}"
+            binding.tvWateringCard.text  = detail.watering
+                ?.replaceFirstChar { it.uppercase() } ?: "N/A"
 
-            if (detail.edibleLeaf == true || detail.edibleFruit == true) {
-                binding.badgeEdibleDetail.visibility = View.VISIBLE
-            } else {
-                binding.badgeEdibleDetail.visibility = View.GONE
+            // sunlight is a List<String> in JSON — join them
+            binding.tvSunlightCard.text  = detail.sunlight
+                ?.joinToString(", ") { it.replaceFirstChar { c -> c.uppercase() } } ?: "N/A"
+
+            binding.tvCycleCard.text     = detail.cycle
+                ?.replaceFirstChar { it.uppercase() } ?: "N/A"
+
+            // hardiness is an object {min, max} in JSON
+            binding.tvHardinessCard.text =
+                if (detail.hardiness?.min != null && detail.hardiness.max != null)
+                    "Zone ${detail.hardiness.min} – ${detail.hardiness.max}"
+                else "N/A"
+
+            // ── Badges ─────────────────────────────────────────────
+            binding.badgeCycle.text    = detail.cycle?.replaceFirstChar { it.uppercase() } ?: "N/A"
+            binding.badgeWatering.text = "💧 ${detail.watering?.replaceFirstChar { it.uppercase() } ?: "N/A"}"
+
+            // edible_leaf OR edible_fruit
+            binding.badgeEdibleDetail.visibility =
+                if (detail.edibleLeaf == true || detail.edibleFruit == true)
+                    View.VISIBLE else View.GONE
+
+            // ── Poison warning ─────────────────────────────────────
+            // JSON has poisonous_to_humans as boolean (false) not int
+            val isPoisonous = when (val raw = detail.poisonousToHumans) {
+                is Int     -> raw > 0
+                is Boolean -> raw
+                else       -> false
+            }
+            binding.cardWarning.visibility = if (isPoisonous) View.VISIBLE else View.GONE
+
+            // ── Description ────────────────────────────────────────
+            binding.tvDescription.text =
+                if (!detail.description.isNullOrBlank()) detail.description
+                else "No description available for this plant."
+
+            // ── Image — use best quality available ─────────────────
+            val imageUrl = detail.defaultImage?.originalUrl
+                ?: detail.defaultImage?.regularUrl
+                ?: detail.defaultImage?.mediumUrl
+                ?: fallbackImage
+
+            if (imageUrl.isNotBlank()) {
+                Glide.with(this)
+                    .load(imageUrl)
+                    .transition(DrawableTransitionOptions.withCrossFade())
+                    .placeholder(R.drawable.placeholder_plant)
+                    .error(R.drawable.placeholder_plant)
+                    .into(binding.ivDetailImage)
             }
 
-            // Poison warning
-            if ((detail.poisonousToHumans ?: 0) > 0) {
-                binding.cardWarning.visibility = View.VISIBLE
-            }
-
-            // Description
-            binding.tvDescription.text = detail.description ?: "No description available for this plant."
-
-            // Image
-            Glide.with(this)
-                .load(detail.defaultImage?.originalUrl ?: detail.defaultImage?.regularUrl)
-                .transition(DrawableTransitionOptions.withCrossFade())
-                .placeholder(R.drawable.placeholder_plant)
-                .error(R.drawable.placeholder_plant)
-                .into(binding.ivDetailImage)
-
-            // Add to Garden
+            // ── Add to Garden ──────────────────────────────────────
             binding.btnAddGarden.setOnClickListener {
                 val gardenPlant = GardenPlant(
-                    id = detail.id,
-                    commonName = detail.commonName ?: "Unknown",
-                    scientificName = detail.scientificName?.firstOrNull() ?: "—",
-                    imageUrl = detail.defaultImage?.mediumUrl ?: detail.defaultImage?.originalUrl,
-                    watering = detail.watering,
-                    cycle = detail.cycle,
-                    sunlight = detail.sunlight?.firstOrNull()
+                    id            = detail.id,
+                    commonName    = detail.commonName ?: fallbackName,
+                    scientificName= detail.scientificName?.firstOrNull() ?: "—",
+                    imageUrl      = detail.defaultImage?.mediumUrl
+                        ?: detail.defaultImage?.originalUrl
+                        ?: fallbackImage.ifBlank { null },
+                    watering      = detail.watering,
+                    cycle         = detail.cycle,
+                    sunlight      = detail.sunlight?.firstOrNull()
                 )
                 gardenViewModel.addToGarden(gardenPlant)
             }
         }
 
+        // ── Garden state ───────────────────────────────────────────
         gardenViewModel.isInGarden.observe(this) { inGarden ->
-            if (inGarden) {
-                binding.btnAddGarden.text = "✓ In My Garden"
-                binding.btnAddGarden.isEnabled = false
-            } else {
-                binding.btnAddGarden.text = "🌱 Add to My Garden"
-                binding.btnAddGarden.isEnabled = true
-            }
+            binding.btnAddGarden.text      = if (inGarden) "✓ In My Garden" else "🌱 Add to My Garden"
+            binding.btnAddGarden.isEnabled = !inGarden
         }
 
         gardenViewModel.message.observe(this) { msg ->
@@ -131,9 +195,14 @@ class PlantDetailActivity : AppCompatActivity() {
             }
         }
 
+        // ── Errors — silent fallback ───────────────────────────────
         plantViewModel.error.observe(this) { err ->
             err?.let {
-                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+                if (binding.tvDescription.text == "Loading plant details...") {
+                    binding.tvDescription.text = "Detailed info unavailable for this plant."
+                    binding.tvFamilyCard.text  = "N/A"
+                    binding.tvHardinessCard.text = "N/A"
+                }
                 plantViewModel.clearError()
             }
         }

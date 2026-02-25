@@ -24,7 +24,7 @@ class SplashActivity : AppCompatActivity() {
         binding.splashTagline.startAnimation(fadeIn)
 
         Handler(Looper.getMainLooper()).postDelayed({
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, LoginScreen::class.java))
             finish()
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }, 2500)

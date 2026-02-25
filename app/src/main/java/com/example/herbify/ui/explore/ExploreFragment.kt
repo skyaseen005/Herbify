@@ -48,6 +48,14 @@ class ExploreFragment : Fragment() {
             val intent = Intent(requireContext(), PlantDetailActivity::class.java)
             intent.putExtra("plant_id", plant.id)
             intent.putExtra("plant_name", plant.commonName ?: "Plant")
+            // ✅ Pass all available data so detail screen works even if API fails
+            intent.putExtra("plant_cycle", plant.cycle ?: "")
+            intent.putExtra("plant_watering", plant.watering ?: "")
+            intent.putExtra("plant_sunlight", plant.sunlight?.firstOrNull() ?: "")
+            intent.putExtra("plant_scientific", plant.scientificName?.firstOrNull() ?: "")
+            intent.putExtra("plant_image",
+                plant.defaultImage?.originalUrl ?: plant.defaultImage?.mediumUrl ?: "")
+            intent.putExtra("plant_edible", plant.edibleLeaf == true)
             startActivity(intent)
         }
         binding.rvPlants.apply {
@@ -55,7 +63,6 @@ class ExploreFragment : Fragment() {
             adapter = plantAdapter
         }
     }
-
     private fun setupSearch() {
         var searchJob: Job? = null
         binding.etSearch.addTextChangedListener { text ->
