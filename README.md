@@ -13,7 +13,8 @@
 
 | Home | Explore | Plant Detail | My Garden | About |
 |------|---------|--------------|-----------|-------|
-| ![Home](https://github.com/user-attachments/assets/0d054c6a-0e37-4c9f-ba30-80dbbab2e6f6) | ![Explore](https://github.com/user-attachments/assets/fce6e86e-e36f-4b99-b233-40414a52f600) | ![Detail 2](![detail1](<img width="540" height="1200" alt="image" src="https://github.com/user-attachments/assets/144e8410-703d-47fe-a044-83e69d24727e" />
+| ![Home](https://github.com/user-attachments/assets/0d054c6a-0e37-4c9f-ba30-80dbbab2e6f6) | ![Explore](https://github.com/user-attachments/assets/fce6e86e-e36f-4b99-b233-40414a52f600) | ![Detail 2(<img width="540" height="1200" alt="image" src="https://github.com/user-attachments/assets/b5b5f3d1-e07f-47b9-8a4a-8b6397fc10da" />
+)](![detail1](<img width="540" height="1200" alt="image" src="https://github.com/user-attachments/assets/144e8410-703d-47fe-a044-83e69d24727e" />
 )
 ) | ![Garden](https://github.com/user-attachments/assets/ccbaf549-fe93-4ab0-9567-8fbe4f7c2407) | ![About](https://github.com/user-attachments/assets/60d0c14c-962d-43a4-82e9-ca71629e79f2) |
  
