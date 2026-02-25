@@ -1,3 +1,67 @@
 <resources>
     <string name="app_name">Herbify</string>
+    <string name="tagline">Discover the Power of Nature</string>
+
+    <!-- Nav -->
+    <string name="nav_home">Home</string>
+    <string name="nav_explore">Explore</string>
+    <string name="nav_garden">My Garden</string>
+    <string name="nav_about">About</string>
+
+    <!-- Home -->
+    <string name="welcome_title">Welcome to Herbify</string>
+    <string name="welcome_subtitle">Your personal herbal plant companion</string>
+    <string name="featured_herbs">Featured Herbs</string>
+    <string name="why_herbal">Why Herbal Plants?</string>
+    <string name="importance_1_title">Natural Healing</string>
+    <string name="importance_1_desc">Herbal plants have been used for thousands of years to treat ailments naturally without harmful side effects.</string>
+    <string name="importance_2_title">Mental Wellness</string>
+    <string name="importance_2_desc">Aromatic herbs like lavender and chamomile promote relaxation, reduce anxiety, and improve sleep quality.</string>
+    <string name="importance_3_title">Nutritional Value</string>
+    <string name="importance_3_desc">Many herbs are rich in vitamins, minerals, and antioxidants that boost immunity and overall health.</string>
+    <string name="importance_4_title">Eco-Friendly</string>
+    <string name="importance_4_desc">Growing herbal plants at home reduces chemical dependency and supports sustainable living.</string>
+    <string name="importance_5_title">Culinary Use</string>
+    <string name="importance_5_desc">Fresh herbs enhance flavor, aroma, and nutritional content in everyday cooking naturally.</string>
+    <string name="importance_6_title">Air Purification</string>
+    <string name="importance_6_desc">Several herbs purify indoor air by absorbing toxins and releasing fresh oxygen continuously.</string>
+
+    <!-- Explore -->
+    <string name="search_hint">Search herbal plants…</string>
+    <string name="filter">Filter</string>
+    <string name="no_plants">No plants found</string>
+
+    <!-- Garden -->
+    <string name="my_garden_title">My Virtual Garden</string>
+    <string name="garden_empty">Your garden is empty.\nExplore plants and add them!</string>
+    <string name="add_to_garden">Add to Garden</string>
+    <string name="remove_from_garden">Remove</string>
+    <string name="added_to_garden">Added to your garden!</string>
+    <string name="already_in_garden">Already in your garden</string>
+
+    <!-- Detail -->
+    <string name="scientific_name">Scientific Name</string>
+    <string name="family">Family</string>
+    <string name="cycle">Cycle</string>
+    <string name="watering">Watering</string>
+    <string name="sunlight">Sunlight</string>
+    <string name="hardiness_zone">Hardiness Zone</string>
+    <string name="edible">Edible</string>
+    <string name="poisonous">Poisonous</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="na">N/A</string>
+
+    <!-- About -->
+    <string name="about_title">About Herbify</string>
+    <string name="about_desc">Herbify is your all-in-one herbal plant encyclopedia. Discover thousands of plant species, learn their medicinal properties, care requirements, and build your own virtual garden — all powered by nature\'s wisdom and modern technology.</string>
+    <string name="constraints_title">Important Constraints</string>
+    <string name="constraint_1">⚠️ Always consult a healthcare professional before using any herbal remedy for medical purposes.</string>
+    <string name="constraint_2">⚠️ Some plants marked as medicinal may be toxic in large doses. Follow recommended guidelines.</string>
+    <string name="constraint_3">⚠️ Pregnant or breastfeeding women should avoid self-medicating with herbal plants.</string>
+    <string name="constraint_4">⚠️ Children under 12 should not consume concentrated herbal extracts without medical advice.</string>
+    <string name="constraint_5">⚠️ Plant information is for educational purposes only and not a substitute for professional advice.</string>
+    <string name="constraint_6">⚠️ Some herbs may interact with prescription medications — always disclose herb use to your doctor.</string>
+    <string name="version">Version 1.0.0</string>
+    <string name="powered_by">Powered by Perenual Plant API</string>
 </resources>

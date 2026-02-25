@@ -1,9 +1,55 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.Herbify" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Herbify" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/green_medium</item>
+        <item name="colorPrimaryVariant">@color/green_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/amber</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:statusBarColor">@color/green_dark</item>
+        <item name="android:navigationBarColor">@color/white</item>
     </style>
 
-    <style name="Theme.Herbify" parent="Base.Theme.Herbify" />
+    <style name="Theme.Herbify.Splash" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowBackground">@color/green_dark</item>
+        <item name="android:statusBarColor">@color/green_dark</item>
+        <item name="android:navigationBarColor">@color/green_dark</item>
+    </style>
+
+    <!-- Card Style -->
+    <style name="HerbifyCard" parent="Widget.MaterialComponents.CardView">
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardElevation">4dp</item>
+        <item name="cardBackgroundColor">@color/white</item>
+    </style>
+
+    <!-- Button Primary -->
+    <style name="HerbifyButton" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/green_medium</item>
+        <item name="cornerRadius">24dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:paddingStart">24dp</item>
+        <item name="android:paddingEnd">24dp</item>
+    </style>
+
+    <!-- Text Styles -->
+    <style name="HerbifyTitle">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/green_dark</item>
+        <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="HerbifySubtitle">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/gray_medium</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="HerbifyChip" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="chipCornerRadius">20dp</item>
+        <item name="chipBackgroundColor">@color/green_mint</item>
+        <item name="android:textColor">@color/green_dark</item>
+    </style>
 </resources>
