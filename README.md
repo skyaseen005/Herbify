@@ -13,14 +13,7 @@
 
 | Home | Explore | Plant Detail | My Garden | About |
 |------|---------|--------------|-----------|-------|
-| ![Home](<img width="540" height="1200" alt="image" src="https://github.com/user-attachments/assets/f1d04c0b-420d-4672-b5b6-eb2bf356ffa3" />
-) | ![Explore](<img width="540" height="1200" alt="image" src="https://github.com/user-attachments/assets/435ab873-683d-4165-84c1-644846930ddd" />
-) | ![Detail](<img width="540" height="1200" alt="image" src="https://github.com/user-attachments/assets/87eb1662-30e6-4dfa-b8a9-385bce5010ae" />)
-    (<img width="540" height="1200" alt="image" src="https://github.com/user-attachments/assets/0d36e44d-ec65-4f24-9b9f-0f1dd9f8e8c8" />)
-
-
-) | ![Garden](<img width="540" height="1200" alt="image" src="https://github.com/user-attachments/assets/21b58b8b-0161-4ebf-9667-9d48ddd3baa9" />) 
-| ![About](<img width="540" height="1200" alt="image" src="https://github.com/user-attachments/assets/455121a9-8383-4fc3-b6db-e6cc652eae8a" />)
+| ![Home](https://github.com/user-attachments/assets/0d054c6a-0e37-4c9f-ba30-80dbbab2e6f6) | ![Explore](https://github.com/user-attachments/assets/fce6e86e-e36f-4b99-b233-40414a52f600) | ![Detail 1](https://github.com/user-attachments/assets/faa32951-e831-4551-8eb6-477d9476acf8) ![Detail 2](https://github.com/user-attachments/assets/0a208b70-3c25-48fe-ad1c-9cf323607e18) | ![Garden](https://github.com/user-attachments/assets/ccbaf549-fe93-4ab0-9567-8fbe4f7c2407) | ![About](https://github.com/user-attachments/assets/60d0c14c-962d-43a4-82e9-ca71629e79f2) |
  
 
 
