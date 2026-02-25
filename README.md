@@ -13,9 +13,17 @@
 
 | Home | Explore | Plant Detail | My Garden | About |
 |------|---------|--------------|-----------|-------|
-| ![Home](screenshots/home.png) | ![Explore](screenshots/explore.png) | ![Detail](screenshots/detail.png) | ![Garden](screenshots/garden.png) | ![About](screenshots/about.png) |
+| ![Home](<img width="540" height="1200" alt="image" src="https://github.com/user-attachments/assets/f1d04c0b-420d-4672-b5b6-eb2bf356ffa3" />
+) | ![Explore](<img width="540" height="1200" alt="image" src="https://github.com/user-attachments/assets/435ab873-683d-4165-84c1-644846930ddd" />
+) | ![Detail](<img width="540" height="1200" alt="image" src="https://github.com/user-attachments/assets/87eb1662-30e6-4dfa-b8a9-385bce5010ae" />
+    <img width="540" height="1200" alt="image" src="https://github.com/user-attachments/assets/0d36e44d-ec65-4f24-9b9f-0f1dd9f8e8c8" />
 
-> *(Add your own screenshots in a `/screenshots` folder)*
+
+) | ![Garden](<img width="540" height="1200" alt="image" src="https://github.com/user-attachments/assets/3b3f3e0a-fede-4c3e-af64-8e57bf082c35" />
+) | ![About](![Uploading image.png…]()
+) 
+
+
 
 ---
 
@@ -143,7 +151,7 @@ Returns full detail for a single plant by its ID, including family, origin, dime
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/herbify.git
+   git clone https://github.com/skyaseen005/herbify.git
    cd herbify
    ```
 
@@ -251,23 +259,9 @@ dependencies {
 
 ---
 
-## 📄 License
 
-```
-MIT License
 
-Copyright (c) 2024 Herbify
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software.
-```
-
----
-
-## 🙏 Credits
+## Credits
 
 - Plant data powered by **[Perenual API](https://perenual.com)**
 - Icons from **Material Design Icons**
